@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { editableMember, member, Photo } from '../../types/member';
 import { AccountServiceService } from './account-service.service';
+import { tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,18 @@ export class MemberServiceService {
   // private accountService = inject(AccountServiceService);
   private baseUrl = environment.apiUrl;
   editMode = signal(false);
+  member = signal<member | null>(null);
 
   getMembers(){
     return this.http.get<member[]>(this.baseUrl + 'members');
   }
 
   getMember(id: string){
-    return this.http.get<member>(this.baseUrl +  'members/' + id);
+    return this.http.get<member>(this.baseUrl +  'members/' + id).pipe(
+      tap(member => {
+        this.member.set(member)
+      })
+    )
   }
 
   getMemberPhotos(id: string){
