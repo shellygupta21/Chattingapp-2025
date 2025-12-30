@@ -43,6 +43,17 @@ export class MemberServiceService {
   //     headers: new HttpHeaders({
   //       Authorization: 'Bearer ' + this.accountService.currentUser()?.token
   //     })
+
   //   }
   // }
+
+  uploadPhoto(file: File){
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<Photo>(this.baseUrl + 'members/add-photo', formData);
+  }
+
+  setMainPhoto(photo: Photo) {
+    return this.http.put(this.baseUrl + 'member/set-main-photo/' + photo.id, {});
+  }
 }
