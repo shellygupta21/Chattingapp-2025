@@ -3,7 +3,7 @@ import { MemberServiceService } from '../../../core/services/member-service.serv
 import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { filter, Observable } from 'rxjs';
-import { member } from '../../../types/member';
+import { Member } from '../../../types/member';
 import { AgePipe } from '../../../core/pipes/age.pipe';
 import { AccountServiceService } from '../../../core/services/account-service.service';
 

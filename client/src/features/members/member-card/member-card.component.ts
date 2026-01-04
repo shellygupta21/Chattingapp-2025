@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { member } from '../../../types/member';
+import { Member } from '../../../types/member';
 import { RouterLink } from '@angular/router';
 import { AgePipe } from '../../../core/pipes/age.pipe';
 
@@ -10,5 +10,5 @@ import { AgePipe } from '../../../core/pipes/age.pipe';
   styleUrl: './member-card.component.css'
 })
 export class MemberCardComponent {
-  member = input.required<member>();
+  member = input.required<Member>();
 }

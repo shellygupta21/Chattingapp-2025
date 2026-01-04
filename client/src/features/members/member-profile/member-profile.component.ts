@@ -1,6 +1,6 @@
 import { Component, HostListener, inject, OnDestroy, OnInit, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { editableMember, member } from '../../../types/member';
+import { editableMember, Member } from '../../../types/member';
 import { DatePipe } from '@angular/common';
 import { MemberServiceService } from '../../../core/services/member-service.service';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -55,7 +55,7 @@ export class MemberProfileComponent implements OnInit, OnDestroy{
           }
           this.toast.success("profile updated successfully");
           this.memberService.editMode.set(false);
-          this.memberService.member.set(updatedMember as member);
+          this.memberService.member.set(updatedMember as Member);
           this.editForm?.reset(updatedMember);
         }
     })

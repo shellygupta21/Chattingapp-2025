@@ -1,4 +1,4 @@
-export type member = {
+export type Member = {
   id: string
   dateOfBirth: string
   imageUrl: string

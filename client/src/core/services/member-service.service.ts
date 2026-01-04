@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { editableMember, member, Photo } from '../../types/member';
+import { editableMember, Member, Photo } from '../../types/member';
 import { AccountServiceService } from './account-service.service';
 import { tap } from 'rxjs';
 
@@ -14,14 +14,14 @@ export class MemberServiceService {
   // private accountService = inject(AccountServiceService);
   private baseUrl = environment.apiUrl;
   editMode = signal(false);
-  member = signal<member | null>(null);
+  member = signal<Member | null>(null);
 
   getMembers(){
-    return this.http.get<member[]>(this.baseUrl + 'members');
+    return this.http.get<Member[]>(this.baseUrl + 'members');
   }
 
   getMember(id: string){
-    return this.http.get<member>(this.baseUrl +  'members/' + id).pipe(
+    return this.http.get<Member>(this.baseUrl +  'members/' + id).pipe(
       tap(member => {
         this.member.set(member)
       })
@@ -54,6 +54,10 @@ export class MemberServiceService {
   }
 
   setMainPhoto(photo: Photo) {
-    return this.http.put(this.baseUrl + 'member/set-main-photo/' + photo.id, {});
+    return this.http.put(this.baseUrl + 'members/set-main-photo/' + photo.id, {});
+  }
+
+  deletePhoto(photoId: number) {
+    return this.http.delete(this.baseUrl + 'members/delete-photo/' + photoId); 
   }
 }
